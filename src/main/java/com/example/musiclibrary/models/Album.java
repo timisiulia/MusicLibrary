@@ -26,6 +26,11 @@ public class Album implements Serializable {
     @Column(name = "description")
     private String description;
 
+    //here
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
+
     public Album() {}
 
     public Album(int id, String title, List<Song> songs, String description) {
