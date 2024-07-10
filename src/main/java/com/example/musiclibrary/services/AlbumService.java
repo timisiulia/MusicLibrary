@@ -31,5 +31,9 @@ public class AlbumService {
     public void deleteAlbum(int id) {
         albumRepository.deleteById(id);
     }
+    public Album findByTitle(String title) {
+        return albumRepository.findByTitleContainingIgnoreCase(title).stream().findFirst().orElse(null);
+    }
+
 
 }

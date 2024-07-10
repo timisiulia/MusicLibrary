@@ -28,5 +28,8 @@ public class ArtistService {
     public void deleteArtist(int id) {
         artistRepository.deleteById(id);
     }
+    public Artist findByName(String name) {
+        return artistRepository.findByNameContainingIgnoreCase(name).stream().findFirst().orElse(null);
+    }
 
 }

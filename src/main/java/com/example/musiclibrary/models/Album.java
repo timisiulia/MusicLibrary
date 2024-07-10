@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "album")
+@Table(name = "albums")
 public class Album implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class Album implements Serializable {
     private Artist artist;
 
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Song> traks;
+    private List<Song> songs;
 
 //    public Album() {}
 //

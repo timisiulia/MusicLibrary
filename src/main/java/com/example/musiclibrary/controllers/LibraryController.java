@@ -3,6 +3,7 @@ package com.example.musiclibrary.controllers;
 import com.example.musiclibrary.models.Library;
 import com.example.musiclibrary.models.Song;
 import com.example.musiclibrary.services.LibraryService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/library")
+@RequestMapping("/api/libraries")
 public class LibraryController {
 
     private LibraryService libraryService;

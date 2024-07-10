@@ -2,6 +2,7 @@ package com.example.musiclibrary.controllers;
 
 import com.example.musiclibrary.models.Song;
 import com.example.musiclibrary.services.SongService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/song")
+@RequestMapping("/api/songs")
 public class SongController {
 
     private SongService songService;
@@ -34,15 +35,35 @@ public class SongController {
         return songService.saveSong(song);
     }
 
-    @PutMapping("/{id}")
-    public Song updateSong(@PathVariable int id, @RequestBody Song song) {
-        song.setId(id);
+//    @PutMapping("/{id}")
+//    public Song updateSong(@PathVariable int id, @RequestBody Song song) {
+//        song.setId(id);
+//        return songService.saveSong(song);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public void deleteSong(@PathVariable int id) {
+//        songService.deleteSong(id);
+//    }
+@PutMapping("/{name}")
+public Song updateSongByName(@PathVariable String name, @RequestBody Song song) {
+    Song existingSong = songService.findByTitle(name);
+    if (existingSong != null) {
+        song.setId(existingSong.getId());
         return songService.saveSong(song);
+    } else {
+        throw new EntityNotFoundException("Song not found with name: " + name);
     }
+}
 
-    @DeleteMapping("/{id}")
-    public void deleteSong(@PathVariable int id) {
-        songService.deleteSong(id);
+    @DeleteMapping("/{name}")
+    public void deleteSongByName(@PathVariable String name) {
+        Song existingSong = songService.findByTitle(name);
+        if (existingSong != null) {
+            songService.deleteSong(existingSong.getId());
+        } else {
+            throw new EntityNotFoundException("Song not found with name: " + name);
+        }
     }
 
 }

@@ -28,5 +28,8 @@ public class SongService {
     public void deleteSong(int id) {
         songRepository.deleteById(id);
     }
+    public Song findByTitle(String title) {
+        return songRepository.findByTitleContainingIgnoreCase(title).stream().findFirst().orElse(null);
+    }
 
 }
