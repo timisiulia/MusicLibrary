@@ -9,23 +9,28 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/artists")
+@RequestMapping("/api/artist")
 public class ArtistController {
-    @Autowired
+
     private ArtistService artistService;
+
+    @Autowired
+    public ArtistController(ArtistService artistService){
+        this.artistService=artistService;
+    }
 
     @GetMapping
     public List<Artist> getAllArtists() {
         return artistService.getAllArtists();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Artist> getArtistById(@PathVariable int id) {
-        return artistService.getArtistById(id);
-    }
+//    @GetMapping("/{id}")
+//    public Optional<Artist> getArtistById(@PathVariable int id) {
+//        return artistService.getArtistById(id);
+//    }
 
     @PostMapping
-    public Artist createArtist(@RequestBody Artist artist) {
+    public Artist createNewArtist(@RequestBody Artist artist) {
         return artistService.saveArtist(artist);
     }
 
@@ -39,9 +44,4 @@ public class ArtistController {
     public void deleteArtist(@PathVariable int id) {
         artistService.deleteArtist(id);
     }
-
-//    @GetMapping("/search")
-//    public List<Artist> searchArtists(@RequestParam String query) {
-//        return artistService.searchArtists(query);
-//    }
 }

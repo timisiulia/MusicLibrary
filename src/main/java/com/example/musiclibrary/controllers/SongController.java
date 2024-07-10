@@ -9,20 +9,25 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/songs")
+@RequestMapping("/api/song")
 public class SongController {
-    @Autowired
+
     private SongService songService;
+
+    @Autowired
+    public SongController(SongService songService) {
+        this.songService = songService;
+    }
 
     @GetMapping
     public List<Song> getAllSongs() {
         return songService.getAllSongs();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Song> getSongById(@PathVariable int id) {
-        return songService.getSongById(id);
-    }
+//    @GetMapping("/{id}")
+//    public Optional<Song> getSongById(@PathVariable int id) {
+//        return songService.getSongById(id);
+//    }
 
     @PostMapping
     public Song createSong(@RequestBody Song song) {
@@ -40,8 +45,4 @@ public class SongController {
         songService.deleteSong(id);
     }
 
-//    @GetMapping("/search")
-//    public List<Song> searchSongs(@RequestParam String query) {
-//        return songService.searchSongs(query);
-//    }
 }

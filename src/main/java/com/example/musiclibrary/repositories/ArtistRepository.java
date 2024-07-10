@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ArtistRepository extends JpaRepository<Artist, Integer> {
-   // List<Artist> findByNameContainingIgnoreCase(String query);
-   // List<Artist> findByLibraryId(int libraryId);
+    List<Artist> findByNameContainingIgnoreCase(String name);
 }

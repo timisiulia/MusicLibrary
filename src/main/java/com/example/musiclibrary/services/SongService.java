@@ -17,9 +17,9 @@ public class SongService {
         return songRepository.findAll();
     }
 
-    public Optional<Song> getSongById(int id) {
-        return songRepository.findById(id);
-    }
+//    public Optional<Song> getSongById(int id) {
+//        return songRepository.findById(id);
+//    }
 
     public Song saveSong(Song song) {
         return songRepository.save(song);
@@ -28,7 +28,5 @@ public class SongService {
     public void deleteSong(int id) {
         songRepository.deleteById(id);
     }
-//    public List<Song> searchSongs(String query) {
-//        return songRepository.findByTitleContainingIgnoreCase(query);
-//    }
+
 }

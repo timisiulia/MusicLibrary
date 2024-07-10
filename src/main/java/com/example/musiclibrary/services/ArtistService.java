@@ -16,10 +16,10 @@ public class ArtistService {
     public List<Artist> getAllArtists() {
         return artistRepository.findAll();
     }
-
-    public Optional<Artist> getArtistById(int id) {
-        return artistRepository.findById(id);
-    }
+//
+//    public Optional<Artist> getArtistById(int id) {
+//        return artistRepository.findById(id);
+//    }
 
     public Artist saveArtist(Artist artist) {
         return artistRepository.save(artist);
@@ -28,7 +28,5 @@ public class ArtistService {
     public void deleteArtist(int id) {
         artistRepository.deleteById(id);
     }
-//    public List<Artist> searchArtists(String query) {
-//        return artistRepository.findByNameContainingIgnoreCase(query);
-//    }
+
 }

@@ -1,6 +1,8 @@
 package com.example.musiclibrary.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.persistence.*;
@@ -9,6 +11,8 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "songs")
 public class Song implements Serializable {
     @Id
@@ -25,11 +29,11 @@ public class Song implements Serializable {
     @JoinColumn(name = "album_id")
     private Album album;
 
-    public Song() {}
-
-    public Song(int id, String title, String length) {
-        this.id = id;
-        this.title = title;
-        this.length = length;
-    }
+//    public Song() {}
+//
+//    public Song(int id, String title, String length) {
+//        this.id = id;
+//        this.title = title;
+//        this.length = length;
+//    }
 }

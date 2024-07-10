@@ -1,6 +1,8 @@
 package com.example.musiclibrary.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.persistence.*;
@@ -10,19 +12,15 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "libraries")
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "library")
 public class Library implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Artist> artists;
+    private List<Artist> artistsList;
 
-    public Library() {}
-
-//    public Library(int id, List<Artist> artists) {
-//        this.id = id;
-//        this.artists = artists;
-//    }
 }

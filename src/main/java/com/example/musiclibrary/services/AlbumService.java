@@ -17,16 +17,13 @@ public class AlbumService {
     public AlbumService( AlbumRepository albumRepository){
         this.albumRepository=albumRepository;
     }
-
-
     public List<Album> getAllAlbums() {
         return albumRepository.findAll();
     }
 
-    public Optional<Album> getAlbumById(int id) {
-        return albumRepository.findById(id);
-    }
-
+//    public Optional<Album> getAlbumById(int id) {
+//        return albumRepository.findById(id);
+//    }
     public Album saveAlbum(Album album) {
         return albumRepository.save(album);
     }
@@ -34,7 +31,5 @@ public class AlbumService {
     public void deleteAlbum(int id) {
         albumRepository.deleteById(id);
     }
-    public List<Album> searchAlbums(String query) {
-        return albumRepository.findByTitleContainingIgnoreCase(query);
-    }
+
 }
