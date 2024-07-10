@@ -12,8 +12,6 @@ import java.util.Optional;
 @RequestMapping("/api/albums")
 public class AlbumController {
 
-//    @Autowired
-//    private AlbumService albumService;
     private final AlbumService albumService;
 
     @Autowired
@@ -47,8 +45,8 @@ public class AlbumController {
         albumService.deleteAlbum(id);
     }
 
-//    @GetMapping("/search")
-//    public List<Album> searchAlbums(@RequestParam String query) {
-//        return albumService.searchAlbums(query);
-//    }
+    @GetMapping("/search")
+    public List<Album> searchAlbums(@RequestParam String query) {
+        return albumService.searchAlbums(query);
+    }
 }

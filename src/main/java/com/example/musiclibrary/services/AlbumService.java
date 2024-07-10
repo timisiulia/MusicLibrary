@@ -34,7 +34,7 @@ public class AlbumService {
     public void deleteAlbum(int id) {
         albumRepository.deleteById(id);
     }
-//    public List<Album> searchAlbums(String query) {
-//        return albumRepository.findByTitleContainingIgnoreCase(query);
-//    }
+    public List<Album> searchAlbums(String query) {
+        return albumRepository.findByTitleContainingIgnoreCase(query);
+    }
 }
