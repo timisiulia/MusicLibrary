@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ArtistService {
@@ -14,12 +13,12 @@ public class ArtistService {
     private ArtistRepository artistRepository;
 
     public List<Artist> getAllArtists() {
-        return artistRepository.findAll();
+        return artistRepository.findAll().stream().toList();
     }
-//
-//    public Optional<Artist> getArtistById(int id) {
-//        return artistRepository.findById(id);
-//    }
+
+    public Artist getArtistByName(String name) {
+        return artistRepository.findByNameContainingIgnoreCase(name).get(0);
+    }
 
     public Artist saveArtist(Artist artist) {
         return artistRepository.save(artist);

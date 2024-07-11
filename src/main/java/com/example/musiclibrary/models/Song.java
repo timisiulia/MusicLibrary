@@ -25,15 +25,4 @@ public class Song implements Serializable {
     @Column(name = "length")
     private String length;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "album_id")
-    private Album album;
-
-//    public Song() {}
-//
-//    public Song(int id, String title, String length) {
-//        this.id = id;
-//        this.title = title;
-//        this.length = length;
-//    }
 }

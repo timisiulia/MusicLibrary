@@ -3,13 +3,11 @@ package com.example.musiclibrary.controllers;
 import com.example.musiclibrary.models.Album;
 import com.example.musiclibrary.services.AlbumService;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/albums")
 public class AlbumController {
@@ -17,7 +15,7 @@ public class AlbumController {
     private final AlbumService albumService;
 
     @Autowired
-    public AlbumController( AlbumService albumService){
+    public AlbumController(AlbumService albumService) {
         this.albumService = albumService;
     }
 
@@ -26,43 +24,30 @@ public class AlbumController {
         return albumService.getAllAlbums();
     }
 
-//    @GetMapping("/{id}")
-//    public Optional<Album> getAlbumById(@PathVariable int id) {
-//        return albumService.getAlbumById(id);
-//    }
-    @PostMapping
-    public Album createNewAlbum(@RequestBody Album album) {
-        return albumService.saveAlbum(album);
+    @PostMapping("/{artistName}")
+    public Album AddNewAlbum(@RequestBody Album album, @PathVariable String artistName) {
+        return albumService.saveAlbum(album, artistName);
     }
 
-//    @PutMapping("/{id}")
-//    public Album updateAlbum(@PathVariable int id, @RequestBody Album album) {
-//        album.setId(id);
-//        return albumService.saveAlbum(album);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public void deleteAlbum(@PathVariable int id) {
-//        albumService.deleteAlbum(id);
-//    }
-@PutMapping("/{title}")
-public Album updateAlbumByTitle(@PathVariable String title, @RequestBody Album album) {
-    Album existingAlbum = albumService.findByTitle(title);
-    if (existingAlbum != null) {
-        album.setId(existingAlbum.getId());
-        return albumService.saveAlbum(album);
-    } else {
-        throw new EntityNotFoundException("Album not found with title: " + title);
+    @PutMapping("/{title}/{artistName}")
+    public Album updateAlbum(@PathVariable String title, @RequestBody Album album, @PathVariable String artistName) {
+        Album existingAlbum = albumService.findByTitle(title);
+        if (existingAlbum != null) {
+            album.setId(existingAlbum.getId());
+            return albumService.saveAlbum(album, artistName);
+
+        } else {
+            throw new EntityNotFoundException("Album with this title was not found: " + title);
+        }
     }
-}
 
     @DeleteMapping("/{title}")
-    public void deleteAlbumByTitle(@PathVariable String title) {
+    public void deleteAlbum(@PathVariable String title) {
         Album existingAlbum = albumService.findByTitle(title);
         if (existingAlbum != null) {
             albumService.deleteAlbum(existingAlbum.getId());
         } else {
-            throw new EntityNotFoundException("Album not found with title: " + title);
+            throw new EntityNotFoundException("Album with this title was not found: " + title);
         }
     }
 

@@ -8,7 +8,7 @@ import lombok.Setter;
 
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,19 +27,7 @@ public class Album implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "artist_id")
-    private Artist artist;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Song> songs;
 
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Song> songs;
-
-//    public Album() {}
-//
-//    public Album(int id, String title, List<Song> traks, String description) {
-//        this.id = id;
-//        this.title = title;
-//        this.traks = traks;
-//        this.description = description;
-//    }
 }

@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 
 @Getter
@@ -23,15 +24,8 @@ public class Artist implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "library_id")
-    private Library library;
+    @OneToMany(cascade={CascadeType.ALL}, orphanRemoval = false)
+    private Set<Album> albums;
 
- //   public Artist() {}
 
-//    public Artist(int id, String name, List<Album> albums) {
-//        this.id = id;
-//        this.name = name;
-//        this.albums = albums;
-//    }
 }

@@ -1,4 +1,4 @@
-package com.example.musiclibrary.dto;
+package com.example.musiclibrary.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class SearchAll {
-    private String type;
+public class SearchAllEntity {
+    private String dataType;
     private String value;
 }

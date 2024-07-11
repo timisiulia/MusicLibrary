@@ -1,15 +1,13 @@
 package com.example.musiclibrary.controllers;
 
-import com.example.musiclibrary.dto.SearchAll;
+import com.example.musiclibrary.models.SearchAllEntity;
 import com.example.musiclibrary.services.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class SearchController {
@@ -21,7 +19,7 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public List<SearchAll> search(@RequestParam String query) {
+    public List<SearchAllEntity> search(@RequestParam String query) {
         return searchService.search(query);
     }
 }

@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
@@ -19,8 +18,5 @@ public class Library implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Artist> artistsList;
 
 }
