@@ -41,11 +41,11 @@ public class AlbumController {
         }
     }
 
-    @DeleteMapping("/{title}")
-    public void deleteAlbum(@PathVariable String title) {
+    @DeleteMapping("/{title}/{artistName}")
+    public void deleteAlbum(@PathVariable String title, @PathVariable String artistName) {
         Album existingAlbum = albumService.findByTitle(title);
         if (existingAlbum != null) {
-            albumService.deleteAlbum(existingAlbum.getId());
+            albumService.deleteAlbum(existingAlbum, artistName);
         } else {
             throw new EntityNotFoundException("Album with this title was not found: " + title);
         }

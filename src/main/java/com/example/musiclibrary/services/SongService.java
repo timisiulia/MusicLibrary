@@ -7,6 +7,7 @@ import com.example.musiclibrary.repositories.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SongService {
@@ -26,8 +27,11 @@ public class SongService {
         return songRepository.save(song);
     }
 
-    public void deleteSong(int id) {
-        songRepository.deleteById(id);
+    public void deleteSong(Song s, String albumName) {
+        Album album = albumRepository.findByTitleContainingIgnoreCase(albumName).get(0);
+        album.getSongs().remove(s);
+        albumRepository.save(album);
+        songRepository.delete(s);
     }
 
     public Song findByTitle(String title) {

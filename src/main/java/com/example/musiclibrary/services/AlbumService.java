@@ -31,8 +31,11 @@ public class AlbumService {
         return albumRepository.save(album);
     }
 
-    public void deleteAlbum(int id) {
-        albumRepository.deleteById(id);
+    public void deleteAlbum(Album album, String artistName) {
+        Artist artist = artistRepository.findByNameContainingIgnoreCase(artistName).get(0);
+        artist.getAlbums().remove(album);
+        artistRepository.save(artist);
+        albumRepository.delete(album);
     }
 
     public Album findByTitle(String title) {

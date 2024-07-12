@@ -40,11 +40,11 @@ public class SongController {
         }
     }
 
-    @DeleteMapping("/{name}")
-    public void deleteSong(@PathVariable String name) {
+    @DeleteMapping("/{name}/{albumName}")
+    public void deleteSong(@PathVariable String name, @PathVariable String albumName) {
         Song existingSong = songService.findByTitle(name);
         if (existingSong != null) {
-            songService.deleteSong(existingSong.getId());
+            songService.deleteSong(existingSong, albumName);
         } else {
             throw new EntityNotFoundException("Song with this name is not found: " + name);
         }
